@@ -6,11 +6,12 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import React, { useContext } from "react";
 import { TaskContext } from "../contexts/TaskContext";
 
 const HomeScreen = ({ navigation }) => {
-  const { state } = useContext(TaskContext);
+  const { state, removeTask } = useContext(TaskContext);
 
   return (
     <View style={styles.container}>
@@ -20,8 +21,11 @@ const HomeScreen = ({ navigation }) => {
         keyExtractor={(task) => task.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.taskItem}>
               <Text>- {item.content}</Text>
+              <TouchableOpacity onPress={() => removeTask(item.id)}>
+                <FontAwesome name="remove" size={24} color="black" />
+              </TouchableOpacity>
             </TouchableOpacity>
           );
         }}
@@ -39,6 +43,14 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 18,
+  },
+  taskItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    marginVertical: 5,
   },
 });
 
