@@ -21,7 +21,10 @@ const HomeScreen = ({ navigation }) => {
         keyExtractor={(task) => task.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity style={styles.taskItem}>
+            <TouchableOpacity
+              style={styles.taskItem}
+              onPress={() => navigation.navigate("Edit", { id: item.id })}
+            >
               <Text>- {item.content}</Text>
               <TouchableOpacity onPress={() => removeTask(item.id)}>
                 <FontAwesome name="remove" size={24} color="black" />

@@ -7,6 +7,10 @@ const taskReducer = (state, action) => {
       ];
     case "remove_task":
       return state.filter((task) => task.id !== action.payload);
+    case "edit_task":
+      return state.map((task) => {
+        return task.id === action.payload.id ? action.payload : task;
+      });
     default:
       return state;
   }

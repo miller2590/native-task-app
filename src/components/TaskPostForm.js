@@ -1,12 +1,12 @@
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import React, { useState } from "react";
 
-const TaskPostForm = ({ onSubmit }) => {
-  const [content, setContent] = useState();
+const TaskPostForm = ({ onSubmit, initialValues = { content: "" } }) => {
+  const [content, setContent] = useState(initialValues.content);
 
   return (
     <View>
-      <Text style={styles.lable}>Enter Task:</Text>
+      <Text style={styles.lable}>Enter Task: </Text>
       <TextInput
         style={styles.input}
         value={content}

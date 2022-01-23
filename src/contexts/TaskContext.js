@@ -19,8 +19,16 @@ export const TaskProvider = ({ children }) => {
     dispatch({ type: "remove_task", payload: id });
   };
 
+  const editTask = (id, content, callBack) => {
+    dispatch({ type: "edit_task", payload: { id, content } });
+
+    if (callBack) {
+      callBack();
+    }
+  };
+
   return (
-    <TaskContext.Provider value={{ state, addNewTask, removeTask }}>
+    <TaskContext.Provider value={{ state, addNewTask, removeTask, editTask }}>
       {children}
     </TaskContext.Provider>
   );
